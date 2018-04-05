@@ -131,6 +131,44 @@ def wave():
     GPIO.output(5,False)
     GPIO.output(12,False)
     GPIO.output(24,False)
+    
+def leftarm():
+    aiy.audio.say('My left arm is waving.')
+    GPIO.output(13,True)
+    GPIO.output(5,True)
+    GPIO.output(12,True)
+    GPIO.output(24,True)
+    servo1.max()
+    sleep(1)
+    servo1.min()
+    sleep(1)
+    servo1.max()
+    sleep(1)
+    servo1.min()
+    sleep(1)
+    GPIO.output(13,False)
+    GPIO.output(5,False)
+    GPIO.output(12,False)
+    GPIO.output(24,False)
+    
+def rightarm():
+    aiy.audio.say('My right arm is waving.')
+    GPIO.output(13,True)
+    GPIO.output(5,True)
+    GPIO.output(12,True)
+    GPIO.output(24,True)
+    servo2.max()
+    sleep(1)
+    servo2.min()
+    sleep(1)
+    servo2.max()
+    sleep(1)
+    servo2.min()
+    sleep(1)
+    GPIO.output(13,False)
+    GPIO.output(5,False)
+    GPIO.output(12,False)
+    GPIO.output(24,False)
 
 def power_off_pi():
     aiy.audio.say('Shutting down.')
@@ -199,9 +237,12 @@ def process_event(assistant, event):
         elif text == 'primary colors off':
             assistant.stop_conversation()
             primary_off()
-        elif text == 'traffic caution':
+        elif text == 'wave right arm':
             assistant.stop_conversation()
-            traffic_caution()
+            rightarm()
+        elif text == 'wave left arm':
+            assistant.stop_conversation()
+            leftarm()
         elif text == 'all lights on':
             assistant.stop_conversation()
             all_led_on()
