@@ -12,62 +12,119 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
 
-"""A demo of the Google CloudSpeech recognizer."""
+"""Run a recognizer using the Google Assistant Library.
 
+The Google Assistant Library has direct access to the audio API, so this Python
+code doesn't need to record audio. Hot word detection "OK, Google" is supported.
+
+The Google Assistant Library can be installed with:
+    env/bin/pip install google-assistant-library==0.0.2
+
+It is available for Raspberry Pi 2/3 only; Pi Zero is not supported.
+"""
+
+import logging
+import platform
+import subprocess
+import sys
+
+import aiy.assistant.auth_helpers
+from aiy.assistant.library import Assistant
 import aiy.audio
-import aiy.cloudspeech
 import aiy.voicehat
 from time import sleep
 from gpiozero import Servo
+from google.assistant.library.event import EventType
+
+import RPi.GPIO as GPIO
+servo1 = Servo(26)
+servo2 = Servo(6)
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="[%(asctime)s] %(levelname)s:%(name)s:%(message)s"
+)
+
+def wave():
+    aiy.audio.say('Hi. I am waving at you.')
+    print('I am waving at you.')
+    servo1.max()
+    servo2.max()
+    sleep(1)
+    servo1.min()
+    servo2.min()
+    sleep(1)
+    servo1.max()
+    servo2.max()
+    sleep(1)
+    servo1.min()
+    servo2.min()
+
+def power_off_pi():
+    aiy.audio.say('Shutting down.')
+    subprocess.call('sudo shutdown now', shell=True)
+
+
+def reboot_pi():
+    aiy.audio.say('Rebooting now.')
+    subprocess.call('sudo reboot', shell=True)
+
+
+def say_ip():
+    ip_address = subprocess.check_output("hostname -I | cut -d' ' -f1", shell=True)
+    aiy.audio.say('My IP address is %s' % ip_address.decode('utf-8'))
+
+
+def process_event(assistant, event):
+    status_ui = aiy.voicehat.get_status_ui()
+    if event.type == EventType.ON_START_FINISHED:
+        status_ui.status('ready')
+        if sys.stdout.isatty():
+            print('Say "OK, Google" then speak, or press Ctrl+C to quit...')
+
+    elif event.type == EventType.ON_CONVERSATION_TURN_STARTED:
+        status_ui.status('listening')
+
+    elif event.type == EventType.ON_RECOGNIZING_SPEECH_FINISHED and event.args:
+        print('You said:', event.args['text'])
+        text = event.args['text'].lower()
+        if text == 'power off':
+            assistant.stop_conversation()
+            power_off_pi()
+        elif text == 'reboot':
+            assistant.stop_conversation()
+            reboot_pi()
+        elif text == 'ip address':
+            assistant.stop_conversation()
+            say_ip()
+        elif text == 'wave':
+            assistant.stop_conversation()
+            wave()
+ 
+    elif event.type == EventType.ON_END_OF_UTTERANCE:
+        status_ui.status('thinking')
+
+    elif event.type == EventType.ON_CONVERSATION_TURN_FINISHED:
+        status_ui.status('ready')
+
+    elif event.type == EventType.ON_ASSISTANT_ERROR and event.args and event.args['is_fatal']:
+        sys.exit(1)
+
 
 def main():
-    recognizer = aiy.cloudspeech.get_recognizer()
-    recognizer.expect_phrase('maximum')
-    recognizer.expect_phrase('minimum')
-    recognizer.expect_phrase('middle')
-    recognizer.expect_phrase('wave')
-    
-    button = aiy.voicehat.get_button()
-    aiy.audio.get_recorder().start()
+    if platform.machine() == 'armv6l':
+        print('Cannot run hotword demo on Pi Zero!')
+        exit(-1)
 
-    servo1 = Servo(26)
-    servo2 = Servo(6)
+    credentials = aiy.assistant.auth_helpers.get_assistant_credentials()
+    with Assistant(credentials) as assistant:
+        for event in assistant.start():
+            process_event(assistant, event)
 
-    while True:
-        print('Press the button and speak')
-        button.wait_for_press()
-        print('Listening...')
-        text = recognizer.recognize()
-        if text is None:
-            print('Sorry, I did not hear you.')
-        else:
-            print('You said "', text, '"')
-            if 'maximum' in text:
-                print('Moving servo to maximum')
-                servo1.max()
-                servo2.max()
-            elif 'minimum' in text:
-                print('Moving servo to minimum')
-                servo1.min()
-                servo2.min()
-            elif 'middle' in text:
-                print('Moving servo to middle')
-                servo1.mid()
-                servo2.mid()
-            elif 'wave' in text:
-                print('I am waving at you.')
-                servo1.max()
-                servo2.max()
-                sleep(1)
-                servo1.min()
-                servo2.min()
-                sleep(1)
-                servo1.max()
-                servo2.max()
-                sleep(1)
-                servo1.min()
-                servo2.min()
 
 if __name__ == '__main__':
     main()
