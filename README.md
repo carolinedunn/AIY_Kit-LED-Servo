@@ -10,7 +10,7 @@ There are 3 projects in this repository.
 
 # Project 1 - Turn on and off 4 LEDs
 
-Materials: You will need 4 LEDs (red, blue, green, and yellow), 4 resistors of 330 ohms, wires, and a soldering iron.
+Materials: You will need 4 LEDs (red, blue, green, and yellow), 4 resistors of 330 ohms, wires, and a breadboard (or soldering iron).
 
 1. Connect LEDs per this wiring diagram.
 
