@@ -14,6 +14,7 @@ Materials: You will need 4 LEDs (red, blue, green, and yellow), 4 resistors of 3
 
 1. Connect LEDs per this wiring diagram.
 
+![alt text](https://github.com/carolinedunn/AIY_Kit-LED-Servo/blob/master/LED%20Wiring%20Diagram.jpg)
 
 2. Use your favorite text editor to create your new file:
 ```
