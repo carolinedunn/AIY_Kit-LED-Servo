@@ -9,6 +9,9 @@ There are 3 projects in this repository.
 ### Pre-Requisite: Please enable billing by completing the Cloud Speech API tutorial first. https://aiyprojects.withgoogle.com/voice-v1/#makers-guide-change-to-the-cloud-speech-api
 
 # Project 1 - Turn on and off 4 LEDs
+
+Materials: You will need 4 LEDs (red, blue, green, and yellow), 4 resistors of 330 ohms, wires, and a soldering iron.
+
 1. Connect LEDs per this wiring diagram.
 
 
