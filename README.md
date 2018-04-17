@@ -65,7 +65,7 @@ You should be able to command your AIY Kit with the following commands:
 > Ok Google, All lighs off.
 
 # Project 2 - Control 2 Servo Motors
-1. Connect 2 servo motors per this wiring diagram. 
+1. Connect one servo motor to GPIO26, and the second servo motor to GPIO6. You may need to solder header pins to the AIY Voice Hat. Wiring Diagram shown below.
 
 ![alt text](https://github.com/carolinedunn/AIY_Kit-LED-Servo/blob/master/Servo%20Wiring%20Diagram.jpg)
 
