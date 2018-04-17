@@ -12,18 +12,18 @@ There are 3 projects in this repository.
 
 Materials: You will need 4 LEDs (red, blue, green, and yellow), 4 resistors of 330 ohms, wires, and a breadboard (or soldering iron).
 
-1. Connect LEDs per this wiring diagram.
+1. Connect the Red LED to GPIO26, Blue LED to GPIO6, Green LED to GPIO13, and Yellow LED to GPIO5. Wiring Diagram below.
 
 ![alt text](https://github.com/carolinedunn/AIY_Kit-LED-Servo/blob/master/LED%20Wiring%20Diagram.jpg)
 
 2. Use your favorite text editor to create your new file:
 ```
-nano src/led.py
+nano src/4led.py
 ```
 
 3. Copy the code from [4leds.py](https://github.com/carolinedunn/AIY_Kit-LED-Servo/blob/master/4leds.py) and paste into your led.py file.
 
-4. Save and close led.py by:
+4. Save and close 4led.py by:
 ```
 Ctrl-X
 y
@@ -31,12 +31,12 @@ y
 ```
 5. Make the file you just created executable.
 ```
-chmod +x /src/led.py
+chmod +x /src/4led.py
 ```
 
 6. Run the file you just created.
 ```
-src/led.py
+src/4led.py
 ```
 
 You should be able to command your AIY Kit with the following commands:
