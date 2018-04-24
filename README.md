@@ -6,7 +6,12 @@ There are 3 projects in this repository.
 2) Control [2 Servo motors](https://github.com/carolinedunn/AIY_Kit-LED-Servo/blob/master/servo.py)
 3) Control [2 Servo Motors and 4 LEDs](https://github.com/carolinedunn/AIY_Kit-LED-Servo/blob/master/servo-led.py)
 
-### Pre-Requisite: Please enable billing by completing the Cloud Speech API tutorial first. https://aiyprojects.withgoogle.com/voice-v1/#makers-guide-change-to-the-cloud-speech-api
+### Pre-Requisite #1 Please enable billing by completing the Cloud Speech API tutorial first. https://aiyprojects.withgoogle.com/voice-v1/#makers-guide-change-to-the-cloud-speech-api
+
+#### Pre-Requisite #2 Create a directory called 'src'
+```
+mkdir src
+```
 
 # Project 1 - Turn on and off 4 LEDs
 
