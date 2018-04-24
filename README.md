@@ -10,6 +10,8 @@ There are 3 projects in this repository.
 
 # Project 1 - Turn on and off 4 LEDs
 
+[YouTube Tutorial Video Here](https://youtu.be/UUunyu2Ua14)
+
 Materials: You will need 4 LEDs (red, blue, green, and yellow), 4 resistors of 330 ohms, wires, and a breadboard (or soldering iron).
 
 1. Connect the Red LED to GPIO26, Blue LED to GPIO6, Green LED to GPIO13, and Yellow LED to GPIO5. Wiring Diagram below.
@@ -69,7 +71,7 @@ You should be able to command your AIY Kit with the following commands:
 
 ![alt text](https://github.com/carolinedunn/AIY_Kit-LED-Servo/blob/master/Servo%20Wiring%20Diagram.jpg)
 
-I purchased [servo motors here](https://amzn.to/2HrBd5G)
+I purchased [servo motors here](https://amzn.to/2HrBd5G).
 
 
 2. Use your favorite text editor to create your new file:
@@ -102,7 +104,7 @@ You should be able to command your AIY Kit with the following commands:
 
 Materials: You will need 4 LEDs (red, blue, green, and yellow), 4 resistors of 330 ohms, wires, soldering iron, and 2 servo motors. You may need to solder header pins to the AIY Voice Hat.
 
-I purchased [servo motors here](https://amzn.to/2HrBd5G)
+I purchased [servo motors here](https://amzn.to/2HrBd5G).
 
 1. Connect one servo motor to GPIO26 (left), and the second servo motor to GPIO6 (right). Connect the Red LED to GPIO13, Blue LED to GPIO65, Green LED to GPIO12, and Yellow LED to GPI24.  Wiring Diagram shown below.
 ![alt text](https://github.com/carolinedunn/AIY_Kit-LED-Servo/blob/master/LED-Servo%20Wiring%20Diagram.jpg)
