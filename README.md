@@ -15,7 +15,7 @@ mkdir src
 
 # Project 1 - Turn on and off 4 LEDs
 
-##[YouTube Tutorial Video Here](https://youtu.be/UUunyu2Ua14)
+## [YouTube Tutorial Video Here](https://youtu.be/UUunyu2Ua14)
 
 Materials: You will need 4 LEDs (red, blue, green, and yellow), 4 resistors of 330 ohms, wires, and a breadboard (or soldering iron).
 
